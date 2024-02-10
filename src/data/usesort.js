@@ -14,7 +14,6 @@ const useSort = (data) => {
     };
 
     const sort = () => {
-        console.log("**** Sort by ", field, direction)
         if (!field) {
             return data;
         }

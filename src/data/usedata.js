@@ -1,11 +1,17 @@
-import { useState } from "react";
 import useFetch from "./usefetch";
 import useFilter from "./usefilter";
 import usePagination from "./usepagination";
 import useSort from "./usesort";
 
 const useData = (url, defaultFilterFields = ["name"], options = {}) => {
-  const { data: rawData, mutate, isLoading, isError, refetch } = useFetch(url, options);
+  const {
+    data: rawData,
+    mutate,
+    remove,
+    isLoading,
+    isError,
+    refetch,
+  } = useFetch(url, options);
 
   const {
     data: filteredData,
@@ -34,11 +40,13 @@ const useData = (url, defaultFilterFields = ["name"], options = {}) => {
   } = usePagination(sortedData);
 
   return {
+    rawData,
     data: currentData,
     mutate,
+    remove,
+    refetch,
     isLoading,
     isError,
-    refetch,
     filterValue,
     setFilterValue,
     sortField,
